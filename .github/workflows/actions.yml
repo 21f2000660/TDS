@@ -1,19 +1,16 @@
-name: Log Branch Creation Events
+name: Log Branch Creation
 
 on:
   create:
-    types: [branch]  # Triggers when a branch is created
+    branches:
+      - '**'
 
 jobs:
-  log-event:
+  log-branch-creation:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: 21f2000660@ds.study.iitm.ac.in
-        run: |
-          echo "📝 Event type: ${{ github.event_name }}"
-          echo "🔖 Branch name: ${{ github.event.ref }}"
-          echo "🕒 Created at: ${{ github.event.created_at }}"
-          echo "👤 Created by: ${{ github.event.sender.login }}"
-          echo "📄 Full event payload:"
-          echo "${{ toJSON(github.event) }}"
-          
+        run: echo "New Branch created!!!"
